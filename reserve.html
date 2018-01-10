@@ -55,7 +55,7 @@
                                 <input type="text" class="form-control" id="reserve_uniqueID">
                             </div>
 
-                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                            <button type="submit" id="add-customer" class="btn btn-primary submit">Submit</button>
                         </form>
 
                     </div>
@@ -64,5 +64,25 @@
             </div>
     </div>
     </div>
+
+    <script type="text/javascript">
+        $("#add-customer").on("click", function(event) {
+          event.preventDefault();
+          var reservations = {
+            name: $("#reserve_name").val().trim(),
+            phoneNumber: $("#reserve_phone").val().trim(),
+            email: $("#reserve_email").val().trim(),
+            uniqueId: $("#reserve_uniqueID").val().trim()
+          };
+    
+        
+          $.post("/api/new", {})
+          .done(function(data) {
+            console.log(data);
+            alert("Adding reservation...");
+          });
+        });
+      </script>
+
 </body>
 </html>

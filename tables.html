@@ -5,6 +5,7 @@
     <title>Hot Restaurants</title>
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 
 
@@ -19,7 +20,7 @@
                     <br>
                     <div class="text-center">
                     <a href="reserve.html"><button class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
-                    <a href="index.html"><button type="button" class="btn btn-light btn-lg"><span class="glyphicon glyphicon-home"></span></button></a>
+                    <a href="home.html"><button type="button" class="btn btn-light btn-lg"><span class="glyphicon glyphicon-home"></span></button></a>
                     </div>
             </div>
         </div>
@@ -43,5 +44,20 @@
                     </div>
                  </div>
 
+                 <script type="text/javascript">
+                      var withReservations = $("#reservation-blanks").val().trim();
+
+                      $.get("/api/new" + withReservations, function(data) {
+                        console.log(data);
+                        if (data) {
+                          $("#add-customer").show();
+                          $("#reserve_name").text(data.name);
+                          $("#reserve_phone").text(data.phone);
+                          $("#reserve_email").text(data.email);
+                          $("#reserve_uniqueID").text(data.uniqueId);
+                        }
+                      });
+                  </script>
+                  
 </body>
 </html>
